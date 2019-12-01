@@ -1,35 +1,22 @@
 from selenium.webdriver.firefox.webdriver import WebDriver
 from selenium.webdriver.support.ui import Select
+from fixture.session import SessionHelper
 
 class Application:
     def __init__(self):
         self.wd = WebDriver()#launch browser
         self.wd.implicitly_wait(60)
+        self.session = SessionHelper(self) #allow to use wd in session.py
 
     def open_homepage(self):
         # open homepage
         wd = self.wd
         wd.get("http://localhost/addressbook/")
 
-    def login(self, username, password):
-        # login
-        wd = self.wd
-        self.open_homepage()
-        wd.find_element_by_name("user").clear()
-        wd.find_element_by_name("user").send_keys(username)
-        wd.find_element_by_name("pass").clear()
-        wd.find_element_by_name("pass").send_keys(password)
-        wd.find_element_by_id("LoginForm").submit()
-
     def open_groups_page(self):
         # open groups page
         wd = self.wd
         wd.find_element_by_link_text("groups").click()
-
-    def logout(self):
-        # logout
-        wd = self.wd
-        wd.find_element_by_link_text("Logout").click()
 
     def create_group(self, group):
         # init groups creation

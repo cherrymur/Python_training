@@ -72,3 +72,17 @@ class ContactHelper:
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
         self.return_homepage()
+
+    def modify_first(self):
+        wd = self.app.wd
+        self.return_homepage()
+        wd.find_element_by_name("selected[]").click()
+        wd.find_element_by_xpath("(//img[@alt='Edit'])[2]").click()
+        wd.find_element_by_name("firstname").click()
+        wd.find_element_by_name("firstname").clear()
+        wd.find_element_by_name("firstname").send_keys("Avramenko_modify")
+        wd.find_element_by_name("nickname").click()
+        wd.find_element_by_name("nickname").clear()
+        wd.find_element_by_name("nickname").send_keys("")
+        wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
+        self.return_homepage()

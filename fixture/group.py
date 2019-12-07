@@ -23,7 +23,6 @@ class GroupHelper:
             wd.find_element_by_name(field_name).send_keys(text)
 
     def fill_form(self, group):#was correct
-        wd = self.app.wd
         self.change_each_field("group_name", group.name)  # values defined in test_modify_group.py or test_create
         self.change_each_field("group_header", group.header)
         self.change_each_field("group_footer", group.footer)

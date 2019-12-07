@@ -15,11 +15,18 @@ class GroupHelper:
         wd.find_element_by_name("submit").click()
         self.return_to_groups_page()
 
-    def fill_each_field(self, text, group):
+    def change_each_field(self, field_name, text): # was incorrect, when I chose variables
         wd = self.app.wd
-        wd.find_element_by_name(text).click()
-        wd.find_element_by_name(text).clear()
-        wd.find_element_by_name(text).send_keys(group)
+        if text is not None:
+            wd.find_element_by_name(field_name).click()
+            wd.find_element_by_name(field_name).clear()
+            wd.find_element_by_name(field_name).send_keys(text)
+
+    def fill_form(self, group):#was correct
+        wd = self.app.wd
+        self.change_each_field("group_name", group.name)  # values defined in test_modify_group.py or test_create
+        self.change_each_field("group_header", group.header)
+        self.change_each_field("group_footer", group.footer)
 
     def return_to_groups_page(self):
         wd = self.app.wd
@@ -36,17 +43,15 @@ class GroupHelper:
         wd = self.app.wd
         wd.find_element_by_name("selected[]").click()
 
-    def modify_first(self, group):
+    def modify_first(self, new_group_data):
         wd = self.app.wd
         self.open_groups_page()
         self.select_first()
+        #open modification form
         wd.find_element_by_name("edit").click()
-        self.fill_form(group)
+        self.fill_form(new_group_data) #was correct when I did myself
+        #submit modification
         wd.find_element_by_name("update").click()
         self.return_to_groups_page()
 
-    def fill_form(self, group):
-        self.fill_each_field("group_name", group.name)  # values defined in test_modify_group.py or test_create
-        self.fill_each_field("group_header", group.header)
-        self.fill_each_field("group_footer", group.footer)
 

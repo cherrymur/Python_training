@@ -45,21 +45,30 @@ class GroupHelper:
 
     def modify_first(self, new_group_data):
         wd = self.app.wd
-        self.open_groups_page()
-        self.select_first()
-        # open modification form
-        wd.find_element_by_name("edit").click()
+        self.ensure_open_modification_form() # open group page, select group and open modification group only if we are not editing group now
         self.fill_form(new_group_data)  # was correct when I did myself
         # submit modification
         wd.find_element_by_name("update").click()
         self.return_to_groups_page()
+
+    def ensure_open_modification_form(self):
+        wd = self.app.wd
+        if len(wd.find_elements_by_name("update")) == 0:
+            self.open_groups_page()
+            self.select_first()
+            self.open_modification_form()
+
+    def open_modification_form(self):
+        wd = self.app.wd
+        wd.find_element_by_name("edit").click()
 
     def count(self):
         wd = self.app.wd
         self.open_groups_page()
         return len(wd.find_elements_by_name("selected[]"))
 
-    def is_empty(self):
+    def is_empty(self, field_name):
         wd = self.app.wd
         self.select_first()
-        return wd.find_element_by_xpath("//div[@id='content']/form/span[2]").text == ""
+        self.open_modification_form()
+        return wd.find_element_by_name(field_name).text == ""

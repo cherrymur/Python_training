@@ -13,7 +13,7 @@ class ContactHelper:
         wd = self.app.wd # link for the browser driver
         wd.find_element_by_link_text("home").click()
 
-    def add(self, contact):
+    def create(self, contact):
         wd = self.app.wd # link for the browser driver
         self.addpage_opened()
         self.fill_all_fields(contact)
@@ -79,3 +79,8 @@ class ContactHelper:
     def selected_first(self):
         wd = self.app.wd # link for the browser driver
         wd.find_element_by_name("selected[]").click()
+
+    def count(self):
+        wd = self.app.wd  # link for the browser driver
+        self.return_homepage()
+        return len(wd.find_elements_by_name('selected[]'))

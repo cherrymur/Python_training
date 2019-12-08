@@ -7,7 +7,7 @@ from fixture.contact import ContactHelper
 class Application:
     def __init__(self):
         self.wd = WebDriver()  # initialize wd variable
-        self.wd.implicitly_wait(60)
+        self.wd.implicitly_wait(5)
         self.session = SessionHelper(self)  # link to SessionHelper
         self.group = GroupHelper(self) # link to GroupHelper
         self.contact = ContactHelper(self) # link to ContactHelper

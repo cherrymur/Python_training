@@ -4,7 +4,7 @@ class ContactHelper:
     def __init__(self, app):
         self.app = app
 
-    def addcontact_page_opened(self):
+    def addpage_opened(self):
         wd = self.app.wd
         wd.find_element_by_link_text("add new").click()
 
@@ -14,7 +14,7 @@ class ContactHelper:
 
     def add(self, contact):
         wd = self.app.wd
-        self.addcontact_page_opened()
+        self.addpage_opened()
         self.fill_all_fields(contact)
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
         self.return_homepage()

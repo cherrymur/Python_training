@@ -3,11 +3,11 @@ class GroupHelper:
         self.app = app
 
     def open_groups_page(self):
-        wd = self.app.wd
+        wd = self.app.wd # link for the browser driver
         wd.find_element_by_link_text("groups").click()
 
     def create(self, group):
-        wd = self.app.wd
+        wd = self.app.wd # link for the browser driver
         self.open_groups_page()
         wd.find_element_by_name("new").click()
         self.fill_form(group)
@@ -15,21 +15,21 @@ class GroupHelper:
         wd.find_element_by_name("submit").click()
         self.return_to_groups_page()
 
-    def change_each_field(self, field_name, text): # was incorrect, when I chose variables
-        wd = self.app.wd
+    def change_each_field(self, field_name, text):
+        wd = self.app.wd # link for the browser driver
         if text is not None:
             wd.find_element_by_name(field_name).click()
             wd.find_element_by_name(field_name).clear()
             wd.find_element_by_name(field_name).send_keys(text)
 
-    def fill_form(self, group):#was correct
-        wd = self.app.wd
+    def fill_form(self, group):
+        wd = self.app.wd # link for the browser driver
         self.change_each_field("group_name", group.name)  # values defined in test_modify_group.py or test_create
         self.change_each_field("group_header", group.header)
         self.change_each_field("group_footer", group.footer)
 
     def return_to_groups_page(self):
-        wd = self.app.wd
+        wd = self.app.wd # link for the browser driver
         wd.find_element_by_link_text("group page").click()
 
     def delete_first(self):

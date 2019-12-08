@@ -3,16 +3,23 @@ from fixture.session import SessionHelper
 from fixture.group import GroupHelper
 from fixture.contact import ContactHelper
 
+
 class Application:
     def __init__(self):
-        self.wd = WebDriver()#launch browser
+        self.wd = WebDriver()  # initialize wd variable
         self.wd.implicitly_wait(60)
-        self.session = SessionHelper(self) #allow to use wd in session.py
-        self.group = GroupHelper(self)
-        self.contact = ContactHelper(self)
+        self.session = SessionHelper(self)  # link to SessionHelper
+        self.group = GroupHelper(self) # link to GroupHelper
+        self.contact = ContactHelper(self) # link to ContactHelper
+
+    def is_valid(self):
+        try:
+            self.wd.current_url
+            return True
+        except:
+            return False
 
     def open_homepage(self):
-        # open homepage
         wd = self.wd
         wd.get("http://localhost/addressbook/")
 

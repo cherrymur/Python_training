@@ -3,7 +3,7 @@ class SessionHelper:
         self.app = app
 
     def login(self, username, password):
-        wd = self.app.wd #link for the browser
+        wd = self.app.wd # link for the browser driver
         self.app.open_homepage()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
@@ -12,6 +12,6 @@ class SessionHelper:
         wd.find_element_by_id("LoginForm").submit()
 
     def logout(self):
-        wd = self.app.wd
+        wd = self.app.wd # link for the browser driver
         wd.find_element_by_link_text("Logout").click()
         wd.find_element_by_name("user")

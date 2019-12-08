@@ -43,21 +43,12 @@ class ContactHelper:
         self.change_each_field("homepage", contact.homepage)
         self.change_each_field("bday", contact.bday)
         self.change_each_field("bmonth", contact.bmonth)
-        # self.change_list_element("bday", contact.bday)
-        # self.change_list_element("bmonth", contact.bmonth)
         self.change_each_field("byear", contact.byear)
         self.change_each_field("aday", contact.aday)
         self.change_each_field("amonth", contact.amonth)
-        # self.change_list_element("aday", contact.aday)
-        # self.change_list_element("amonth", contact.amonth)
         self.change_each_field("ayear", contact.ayear)
         self.change_each_field("address2", contact.address2)
         self.change_each_field("notes", contact.notes)
-
-    # def change_list_element(self, field_name, text):
-    #    wd = self.app.wd
-    #   if text is not None:
-    #      Select(wd.find_element_by_name(field_name)).select_by_visible_text(text)
 
     def return_homepage(self):
         wd = self.app.wd  # link for the browser driver
@@ -66,19 +57,19 @@ class ContactHelper:
     def delete_first(self):
         wd = self.app.wd  # link for the browser driver
         self.return_homepage()
-        self.selected_first()
+        self.select_first()
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
         self.return_homepage()
 
-    def selected_first(self):
+    def select_first(self):
         wd = self.app.wd  # link for the browser driver
         wd.find_element_by_name("selected[]").click()
 
     def modify_first(self, new_contact_data):
         wd = self.app.wd  # link for the browser driver
         self.return_homepage()
-        self.selected_first()
+        self.select_first()
 
         # open modification form
         wd.find_element_by_xpath("(//img[@alt='Edit'])[2]").click()

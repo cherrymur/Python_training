@@ -52,7 +52,7 @@ class ContactHelper:
 
     def return_homepage(self):
         wd = self.app.wd  # link for the browser driver
-        wd.find_element_by_link_text("home").click()
+        wd.find_element_by_xpath("//li/a").click()
 
     def delete_first(self):
         wd = self.app.wd  # link for the browser driver
@@ -72,7 +72,7 @@ class ContactHelper:
         self.select_first()
 
         # open modification form
-        wd.find_element_by_xpath("(//img[@alt='Edit'])[2]").click()
+        wd.find_element_by_xpath("(//img[@alt='Edit'])").click()
         self.fill_form(new_contact_data)
 
         # submit
@@ -81,5 +81,5 @@ class ContactHelper:
 
     def count(self):
         wd = self.app.wd
-        self.opened_add_new_page()
+        self.return_homepage()
         return len(wd.find_elements_by_name("selected[]"))

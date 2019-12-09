@@ -78,3 +78,8 @@ class ContactHelper:
         # submit
         wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
         self.return_homepage()
+
+    def count(self):
+        wd = self.app.wd
+        self.opened_add_new_page()
+        return len(wd.find_elements_by_name("selected[]"))

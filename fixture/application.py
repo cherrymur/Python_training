@@ -19,6 +19,13 @@ class Application:
         except:
             return False
 
+    def is_valid(self):
+        try:
+            self.wd.current_url
+            return True
+        except:# check any problems
+            return False
+
     def open_homepage(self):
         wd = self.wd
         wd.get("http://localhost/addressbook/")

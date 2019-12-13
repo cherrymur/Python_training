@@ -7,10 +7,12 @@ class ContactHelper:
 
     def opened_add_new_page(self):
         wd = self.app.wd  # link for the browser driver
-        wd.find_element_by_link_text("add new").click()
+        if not (wd.current_url.endswith("addressbook/") and len(wd.find_elements_by_name("submit")) > 0):
+            wd.find_element_by_link_text("add new").click()
 
     def create(self, contact):
         wd = self.app.wd  # link for the browser driver
+        #wd.find_element_by_link_text("add new").click()  # for checking if in opened_add_new_page
         self.opened_add_new_page()
         self.fill_form(contact)
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
@@ -52,7 +54,8 @@ class ContactHelper:
 
     def return_homepage(self):
         wd = self.app.wd  # link for the browser driver
-        wd.find_element_by_xpath("//li/a").click()
+        if not (wd.current_url.endswith("addressbook/") and len(wd.find_elements_by_name("searchstring")) > 0):
+            wd.find_element_by_xpath("//li/a").click()
 
     def delete_first(self):
         wd = self.app.wd  # link for the browser driver
@@ -68,6 +71,7 @@ class ContactHelper:
 
     def modify_first(self, new_contact_data):
         wd = self.app.wd  # link for the browser driver
+        #wd.find_element_by_link_text("add new").click()  # for checking if in return homepage
         self.return_homepage()
         self.select_first()
 

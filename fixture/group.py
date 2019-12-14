@@ -65,7 +65,7 @@ class GroupHelper:
         wd.find_element_by_name("update").click()
         self.return_to_groups_page()
 
-    def get_groups_list(self):
+    def get_list(self):
         wd = self.app.wd
         self.open_groups_page()
         group_list = []

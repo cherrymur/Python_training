@@ -1,4 +1,5 @@
 from selenium.webdriver.support.ui import Select
+from model.contact import Contact
 
 
 class ContactHelper:
@@ -12,7 +13,7 @@ class ContactHelper:
 
     def create(self, contact):
         wd = self.app.wd  # link for the browser driver
-        #wd.find_element_by_link_text("add new").click()  # for checking if in opened_add_new_page
+        # wd.find_element_by_link_text("add new").click()  # for checking if in opened_add_new_page
         self.opened_add_new_page()
         self.fill_form(contact)
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
@@ -29,7 +30,6 @@ class ContactHelper:
                 Select(wd.find_element_by_name(field_name)).select_by_visible_text(text)
 
     def fill_form(self, contact):
-        wd = self.app.wd  # link for the browser driver
         self.change_each_field("firstname", contact.firstname)
         self.change_each_field("lastname", contact.lastname)
         self.change_each_field("address", contact.address)
@@ -71,7 +71,7 @@ class ContactHelper:
 
     def modify_first(self, new_contact_data):
         wd = self.app.wd  # link for the browser driver
-        #wd.find_element_by_link_text("add new").click()  # for checking if in return homepage
+        # wd.find_element_by_link_text("add new").click()  # for checking if in return homepage
         self.return_homepage()
         self.select_first()
 
@@ -87,3 +87,16 @@ class ContactHelper:
         wd = self.app.wd
         self.return_homepage()
         return len(wd.find_elements_by_name("selected[]"))
+
+    def get_list(self):
+        wd = self.app.wd
+        self.return_homepage()
+        contact_list = []
+        print(wd.find_elements_by_name("entry"))
+        for element in wd.find_elements_by_name("entry"):
+            graphs = element.find_elements_by_tag_name("td")
+            firstname = graphs[1].text
+            lastname = graphs[2].text
+            id = graphs[0].find_element_by_tag_name("input").get_attribute("value")
+            contact_list.append(Contact(lastname=lastname, firstname=firstname, id=id))
+        return list(contact_list)

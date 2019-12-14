@@ -92,11 +92,10 @@ class ContactHelper:
         wd = self.app.wd
         self.return_homepage()
         contact_list = []
-        print(wd.find_elements_by_name("entry"))
         for element in wd.find_elements_by_name("entry"):
             graphs = element.find_elements_by_tag_name("td")
-            firstname = graphs[1].text
-            lastname = graphs[2].text
+            firstname = graphs[2].text
+            lastname = graphs[1].text
             id = graphs[0].find_element_by_tag_name("input").get_attribute("value")
             contact_list.append(Contact(lastname=lastname, firstname=firstname, id=id))
-        return list(contact_list)
+        return contact_list

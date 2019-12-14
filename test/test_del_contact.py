@@ -17,4 +17,5 @@ def test_del_first_contact(app):
     print(old_contacts, new_contacts)
     assert (len(old_contacts) - 1) == len(new_contacts)
     old_contacts[0:1] = []
+    print(old_contacts, new_contacts)
     assert old_contacts == new_contacts

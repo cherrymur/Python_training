@@ -3,7 +3,7 @@ from sys import maxsize
 
 class Contact:
     # added None value to be able to change only one parametr
-    def __init__(self, id = None, firstname=None, middlename=None, lastname=None, nickname=None, title=None, company=None,
+    def __init__(self, id=None, firstname=None, middlename=None, lastname=None, nickname=None, title=None, company=None,
                  address=None, home=None, mobile=None, work=None, fax=None, email=None, email2=None, email3=None, homepage=None, bday=None,
                  bmonth=None, byear=None, aday=None, amonth=None, ayear=None, address2=None, phone2=None, notes=None):
         self.id = id
@@ -33,7 +33,7 @@ class Contact:
         self.notes = notes
 
     def __repr__(self):
-        return "%s:%s %s" % (self.id, self.firstname, self.lastname)
+        return "%s:%s %s" % (self.id, self.lastname, self.firstname)
 
     def __eq__(self, other):
         return (self.id is None or other.id is None or self.id == other.id) and self.firstname == other.firstname\

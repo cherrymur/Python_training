@@ -64,6 +64,7 @@ class ContactHelper:
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
         self.return_homepage()
+        wd.implicitly_wait(8)
 
     def select_first(self):
         wd = self.app.wd  # link for the browser driver

@@ -18,6 +18,7 @@ class GroupHelper:
         # submit group creation
         wd.find_element_by_name("submit").click()
         self.return_to_groups_page()
+        self.group_cache = None
 
     def change_each_field(self, field_name, text):
         wd = self.app.wd  # link for the browser driver
@@ -27,7 +28,6 @@ class GroupHelper:
             wd.find_element_by_name(field_name).send_keys(text)
 
     def fill_form(self, group):
-        wd = self.app.wd  # link for the browser driver
         self.change_each_field("group_name", group.name)  # values defined in test_modify_group.py or test_create
         self.change_each_field("group_header", group.header)
         self.change_each_field("group_footer", group.footer)
@@ -42,6 +42,7 @@ class GroupHelper:
         self.select_first()
         wd.find_element_by_name("delete").click()
         self.return_to_groups_page()
+        self.group_cache = None
 
     def select_first(self):
         wd = self.app.wd
@@ -64,13 +65,17 @@ class GroupHelper:
         # submit modification
         wd.find_element_by_name("update").click()
         self.return_to_groups_page()
+        self.group_cache = None
+
+    group_cache = None
 
     def get_list(self):
-        wd = self.app.wd
-        self.open_groups_page()
-        group_list = []
-        for element in wd.find_elements_by_css_selector("span.group"):
-            text = element.text
-            id = element.find_element_by_name("selected[]").get_attribute("value")
-            group_list.append(Group(name=text, id=id))
-        return group_list
+        if self.group_cache is None:
+            wd = self.app.wd
+            self.open_groups_page()
+            self.group_cache = []
+            for element in wd.find_elements_by_css_selector("span.group"):
+                text = element.text
+                id = element.find_element_by_name("selected[]").get_attribute("value")
+                self.group_cache.append(Group(name=text, id=id))
+        return list(self.group_cache)

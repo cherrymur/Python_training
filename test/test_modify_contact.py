@@ -16,8 +16,9 @@ def test_mod_firstname(app):
     added_contact.id = old_contacts[0].id
     added_contact.lastname = old_contacts[0].lastname
     app.contact.modify_first(added_contact)
+    app.contact.modify_first(added_contact)
+    assert len(old_contacts) == app.contact.count_c()
     new_contacts = app.contact.get_list()
-    assert len(old_contacts) == len(new_contacts)
     old_contacts[0] = added_contact
     assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
 
@@ -36,8 +37,8 @@ def test_mod_lastname(app):
     added_contact.id = old_contacts[0].id
     added_contact.firstname = old_contacts[0].firstname
     app.contact.modify_first(added_contact)
+    assert len(old_contacts) == app.contact.count_c()
     new_contacts = app.contact.get_list()
-    assert len(old_contacts) == len(new_contacts)
     old_contacts[0] = added_contact
     assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
 

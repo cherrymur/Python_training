@@ -13,7 +13,7 @@ def test_del_first_contact(app):
                                    notes="dsd"))
     old_contacts = app.contact.get_list()
     app.contact.delete_first()
+    assert len(old_contacts) == app.contact.count_c()
     new_contacts = app.contact.get_list()
-    assert len(old_contacts) == len(new_contacts)
     old_contacts[0:1] = []
     assert old_contacts == new_contacts

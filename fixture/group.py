@@ -59,8 +59,8 @@ class GroupHelper:
         self.open_groups_page()
         return len(wd.find_elements_by_name("selected[]"))
 
-    def modify_first(self):
-        self.modify_by_index(0)
+    def modify_first(self, new_group_data):
+        self.modify_by_index(0, new_group_data)
 
     def modify_by_index(self, index, new_group_data):
         wd = self.app.wd

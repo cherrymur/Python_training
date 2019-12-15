@@ -59,24 +59,31 @@ class ContactHelper:
             wd.find_element_by_xpath("//li/a").click()
 
     def delete_first(self):
+        self.delete_by_index(0)
+
+    def delete_by_index(self, index):
         wd = self.app.wd  # link for the browser driver
         self.return_homepage()
-        self.select_first()
+        self.select_by_index(index)
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
         self.return_homepage()
-        wd.implicitly_wait(8)
         self.contact_cache = None
 
     def select_first(self):
+        self.select_by_index(0)
+
+    def select_by_index(self, index):
         wd = self.app.wd  # link for the browser driver
-        wd.find_element_by_name("selected[]").click()
+        wd.find_elements_by_name("selected[]")[index].click()
 
     def modify_first(self, new_contact_data):
+        self.modify_by_index(0, new_contact_data)
+
+    def modify_by_index(self, index, new_contact_data):
         wd = self.app.wd  # link for the browser driver
-        # wd.find_element_by_link_text("add new").click()  # for checking if in return homepage
         self.return_homepage()
-        self.select_first()
+        self.select_by_index(index)
 
         # open modification form
         wd.find_element_by_xpath("(//img[@alt='Edit'])").click()

@@ -86,13 +86,20 @@ class ContactHelper:
         self.return_homepage()
 
         # open modification form
-        wd.find_elements_by_xpath("(//img[@alt='Edit'])")[index].click()
+        self.select_to_edit_by_index(index)
         self.fill_form(new_contact_data)
 
         # submit
         wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
         self.return_homepage()
         self.contact_cache = None
+
+    def select_to_edit_by_index(self, index):
+        wd = self.app.wd
+        wd.find_elements_by_xpath("(//img[@alt='Edit'])")[index].click()
+        
+    def select_to_edit_first(self):
+        self.edit_by_index(0)
 
     def count_c(self):
         wd = self.app.wd

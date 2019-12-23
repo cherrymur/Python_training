@@ -10,7 +10,7 @@ def test_del_first_contact(app):
                                    fax="hjhj",
                                    email="ghgh", email2="hgh", email3="hgh", homepage="hghg", bday="31",
                                    bmonth="December", byear="1990",
-                                   aday="12", amonth="October", ayear="1236", address2="dsfef", phone2="sas",
+                                   aday="12", amonth="October", ayear="1236", address2="dsfef", secondaryphone="sas",
                                    notes="dsd"))
     old_contacts = app.contact.get_list()
     index = randrange(len(old_contacts))

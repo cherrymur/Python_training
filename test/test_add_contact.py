@@ -10,7 +10,7 @@ def random_string(prefix, maxlen):
     return prefix + "".join([random.choice(symbols) for i in range(random.randrange(maxlen))])
 
 
-testdata =[
+testdata = [
     Contact(firstname=firstname, middlename=middlename, lastname=lastname, nickname=nickname, title=title,
             company=company, address=address, homephone=homephone, mobilephone=mobilephone, workphone=workphone,
             faxphone=faxphone, email=email, email2=email2, email3=email3, homepage=homepage, address2=address2,
@@ -35,11 +35,6 @@ testdata =[
     for notes in ["", random_string("notes", 20)]
 ]
 
-#testdata =[Group(name="", header="", footer="")] + [
- #   Group(name=random_string("name", 10), header=random_string("header", 10), footer=random_string("footer", 10))
-  #  for i in range(5)
-#]
-
 
 @pytest.mark.parametrize("contact", testdata, ids=[repr(x) for x in testdata])
 def test_add_contact(app, contact):
@@ -49,3 +44,4 @@ def test_add_contact(app, contact):
     new_contacts = app.contact.get_list()
     old_contacts.append(contact)
     assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
+

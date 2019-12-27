@@ -99,7 +99,6 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_elements_by_xpath("(//img[@alt='Edit'])")[index].click()
 
-        
     def select_to_edit_first(self):
         self.edit_by_index(0)
 

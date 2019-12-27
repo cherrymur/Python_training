@@ -98,6 +98,7 @@ class ContactHelper:
     def select_to_edit_by_index(self, index):
         wd = self.app.wd
         wd.find_elements_by_xpath("(//img[@alt='Edit'])")[index].click()
+
         
     def select_to_edit_first(self):
         self.edit_by_index(0)
@@ -121,17 +122,11 @@ class ContactHelper:
                 id = graphs[0].find_element_by_tag_name("input").get_attribute("value")
                 all_phones = graphs[5].text
                 all_emails = graphs[4].text
+                address = graphs[3].text
                 self.contact_cache.append(Contact(lastname=lastname, firstname=firstname, id=id,
                                                   all_phones_from_home_page=all_phones,
-                                                  all_emails_from_home_page=all_emails))
+                                                  all_emails_from_home_page=all_emails, address=address))
         return list(self.contact_cache)
-
-    def open_to_edit_by_index(self, index):
-        wd = self.app.wd
-        self.app.open_homepage()
-        row = wd.find_elements_by_name("entry")[index]
-        cell = row.find_elements_by_tag_name("td")[7]
-        cell.find_element_by_tag_name("a").click()
 
     def open_view_by_index(self, index):
         wd = self.app.wd
@@ -142,7 +137,7 @@ class ContactHelper:
 
     def get_info_from_edit_page(self, index):
         wd = self.app.wd
-        self.open_to_edit_by_index(index)
+        self.select_to_edit_by_index(index)
         firstname = wd.find_element_by_name("firstname").get_attribute("value")
         lastname = wd.find_element_by_name("lastname").get_attribute("value")
         id = wd.find_element_by_name("id").get_attribute("value")
@@ -153,20 +148,33 @@ class ContactHelper:
         email = wd.find_element_by_name("email").get_attribute("value")
         email2 = wd.find_element_by_name("email2").get_attribute("value")
         email3 = wd.find_element_by_name("email3").get_attribute("value")
+        address = wd.find_element_by_name("address").get_attribute("value")
         return Contact(firstname=firstname, lastname=lastname, id=id, homephone=homephone, workphone=workphone,
-                       mobilephone=mobilephone, secondaryphone=secondaryphone, email=email, email2=email2, email3=email3)
+                       mobilephone=mobilephone, secondaryphone=secondaryphone, email=email, email2=email2,
+                       email3=email3, address=address)
 
     def get_contact_from_view_page(self, index):
         wd = self.app.wd
         self.open_view_by_index(index)
         text = wd.find_element_by_id("content").text
-        homephone = re.search("H: (.*)", text).group(1)
-        workphone = re.search("W: (.*)", text).group(1)
-        mobilephone = re.search("M: (.*)", text).group(1)
-        secondaryphone = re.search("P: (.*)", text).group(1)
-        emails = re.findall("(.*)@(.*).(.*)", text)
-        email = emails[0]
-        email2 = emails[1]
-        email3 = emails[2]
+        if re.search("H: (.*)", text) is not None:
+            homephone = re.search("H: (.*)", text).group(1)
+        if re.search("W: (.*)", text) is not None:
+            workphone = re.search("W: (.*)", text).group(1)
+        if re.search("M: (.*)", text) is not None:
+            mobilephone = re.search("M: (.*)", text).group(1)
+        if re.search("P: (.*)", text) is not None:
+            secondaryphone = re.search("P: (.*)", text).group(1)
+        all_emails_from_view_page = re.findall("(.*)@(.*).(.*)", text)
         return Contact(id=id, homephone=homephone, workphone=workphone,
-                       mobilephone=mobilephone, secondaryphone=secondaryphone, email=email, email2=email2, email3=email3)
+                       mobilephone=mobilephone, secondaryphone=secondaryphone, all_emails_from_view_page=all_emails_from_view_page)
+
+
+''' another way to  write     select_to_edit_by_index
+def open_to_edit_by_index(self, index):
+        wd = self.app.wd
+        self.app.open_homepage()
+        row = wd.find_elements_by_name("entry")[index]
+        cell = row.find_elements_by_tag_name("td")[7]
+        cell.find_element_by_tag_name("a").click() '''
+

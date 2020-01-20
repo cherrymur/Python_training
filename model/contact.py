@@ -4,8 +4,8 @@ from sys import maxsize
 class Contact:
     # added None value to be able to change only one parametr
     def __init__(self, id=None, firstname=None, middlename=None, lastname=None, nickname=None, title=None, company=None,
-                 address=None, all_phones_from_home_page=None, homephone=None, mobilephone=None, workphone=None, faxphone=None,
-                 all_emails_from_home_page=None, email=None, email2=None, email3=None, homepage=None, bday=None,
+                 address=None, all_phones_from_home_page=None, all_phones_from_view_page=None, homephone=None, mobilephone=None, workphone=None, faxphone=None,
+                 all_emails_from_home_page=None, all_emails_from_view_page=None, email=None, email2=None, email3=None, homepage=None, bday=None,
                  bmonth=None, byear=None, aday=None, amonth=None, ayear=None, address2=None, notes=None, secondaryphone=None):
         self.id = id
         self.firstname = firstname
@@ -34,6 +34,8 @@ class Contact:
         self.secondaryphone = secondaryphone
         self.all_phones_from_home_page = all_phones_from_home_page
         self.all_emails_from_home_page = all_emails_from_home_page
+        self.all_phones_from_view_page = all_phones_from_view_page
+        self.all_emails_from_view_page = all_emails_from_view_page
 
     def __repr__(self):
         return "%s:%s %s" % (self.id, self.lastname, self.firstname)

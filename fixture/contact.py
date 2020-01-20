@@ -38,9 +38,9 @@ class ContactHelper:
         self.change_each_field("email", contact.email)
         self.change_each_field("email2", contact.email2)
         self.change_each_field("email3", contact.email3)
-        self.change_each_field("home", contact.home)
-        self.change_each_field("work", contact.work)
-        self.change_each_field("mobile", contact.mobile)
+        self.change_each_field("home", contact.homephone)
+        self.change_each_field("work", contact.workphone)
+        self.change_each_field("mobile", contact.mobilephone)
         self.change_each_field("middlename", contact.middlename)
         self.change_each_field("company", contact.company)
         self.change_each_field("title", contact.title)
@@ -164,9 +164,11 @@ class ContactHelper:
             mobilephone = re.search("M: (.*)", text).group(1)
         if re.search("P: (.*)", text) is not None:
             secondaryphone = re.search("P: (.*)", text).group(1)
-        all_emails_from_view_page = re.findall("(.*)@(.*).(.*)", text)
-        return Contact(id=id, homephone=homephone, workphone=workphone,
-                       mobilephone=mobilephone, secondaryphone=secondaryphone, all_emails_from_view_page=all_emails_from_view_page)
+        all_emails = re.findall("(.*)@(.*).(.*)", text)
+        all_emails = "\n".join(list(all_emails))
+        self.return_homepage()
+        return Contact(id=id, homephone=homephone, workphone=workphone, mobilephone=mobilephone,
+                       secondaryphone=secondaryphone, all_emails_from_view_page=all_emails)
 
 
 ''' another way to  write     select_to_edit_by_index

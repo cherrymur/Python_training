@@ -15,11 +15,11 @@ class Application:
         else:
             raise ValueError("unknown %s" % browser)
         # initialize wd variable
-        self.wd.implicitly_wait(5) # not delete because tests are failed
+        self.wd.implicitly_wait(5)  # not delete because tests are failed
         self.session = SessionHelper(self)  # link to SessionHelper
-        self.group = GroupHelper(self) # link to GroupHelper
-        self.contact = ContactHelper(self) # link to ContactHelper
-        self.baseUrl=baseUrl
+        self.group = GroupHelper(self)  # link to GroupHelper
+        self.contact = ContactHelper(self)  # link to ContactHelper
+        self.baseUrl = baseUrl
 
     def is_valid(self):
         try:

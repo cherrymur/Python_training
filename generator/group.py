@@ -6,6 +6,8 @@ import string
 import getopt
 import sys
 
+
+# parameter for current script
 try:
     opts, args = getopt.getopt(sys.argv[1:], "n:f", ["numbers of group", "file"])
 except getopt.GetoptError as err:

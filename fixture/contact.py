@@ -18,6 +18,7 @@ class ContactHelper:
         self.opened_add_new_page()
         self.fill_form(contact)
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
+        wd.find_element_by_css_selector("div.msgbox")
         self.return_homepage()
         self.contact_cache = None
 

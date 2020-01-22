@@ -1,5 +1,5 @@
 from model.group import Group
-import json
+import jsonpickle
 import os.path
 import random
 import string
@@ -15,7 +15,7 @@ except getopt.GetoptError as err:
     sys.exit(2)
 
 n = 5
-f = "data/test.json"
+f = "data/groups.json"
 
 for o, a in opts:
     if o == "-n":
@@ -36,4 +36,5 @@ testdata = [Group(name="", header="", footer="")] + [
 file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", f) # file.json создание файла
 
 with open(file_path, "w") as out:
-    out.write(json.dumps(testdata, default=lambda x: x.__dict__, indent=2)) # default for create dict w data from data.group; indent - design)
+    jsonpickle.set_encoder_options("json", indent=2)
+    out.write(jsonpickle.encode(testdata)) # changed to pinckle because we want to generate from .json file .py file

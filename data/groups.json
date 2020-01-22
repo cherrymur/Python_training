@@ -1,38 +1,44 @@
 [
   {
-    "name": "",
-    "header": "",
+    "py/object": "model.group.Group",
     "footer": "",
-    "id": null
+    "header": "",
+    "id": null,
+    "name": ""
   },
   {
-    "name": "namenqXF<lC",
-    "header": "headerm_%",
-    "footer": "footer",
-    "id": null
+    "py/object": "model.group.Group",
+    "footer": "footer#iEF",
+    "header": "header8(CCd:Il",
+    "id": null,
+    "name": "nameJ]="
   },
   {
-    "name": "name02B59u%",
-    "header": "headerFi",
-    "footer": "footerI3$pO",
-    "id": null
-  },
-  {
-    "name": "name9",
-    "header": "headerQ",
-    "footer": "footerAL0g~Ug",
-    "id": null
-  },
-  {
-    "name": "name1'<",
-    "header": "header,zbN",
-    "footer": "footerN ",
-    "id": null
-  },
-  {
-    "name": "name}",
+    "py/object": "model.group.Group",
+    "footer": "footer nP{",
     "header": "header",
-    "footer": "footer  'c[",
-    "id": null
+    "id": null,
+    "name": "namev6E"
+  },
+  {
+    "py/object": "model.group.Group",
+    "footer": "footer<UYYkj5\\D",
+    "header": "header6h]",
+    "id": null,
+    "name": "name`#'W}^V ?"
+  },
+  {
+    "py/object": "model.group.Group",
+    "footer": "footer*c:b(bU !",
+    "header": "header3XTil'%",
+    "id": null,
+    "name": "name4|"
+  },
+  {
+    "py/object": "model.group.Group",
+    "footer": "footer",
+    "header": "headerVUH>",
+    "id": null,
+    "name": "name<3l8 w7P1"
   }
 ]

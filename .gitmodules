@@ -1,0 +1,4 @@
+[submodule "test"]
+	path = test
+	url = https://github.com/cherrymur/Exercize2.git
+	branch = stable

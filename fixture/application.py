@@ -5,7 +5,7 @@ from fixture.contact import ContactHelper
 
 
 class Application:
-    def __init__(self, browser, baseUrl):
+    def __init__(self, browser, base_url):
         if browser == "firefox":
             self.wd = webdriver.Firefox()
         elif browser == "chrome":
@@ -19,25 +19,18 @@ class Application:
         self.session = SessionHelper(self)  # link to SessionHelper
         self.group = GroupHelper(self)  # link to GroupHelper
         self.contact = ContactHelper(self)  # link to ContactHelper
-        self.baseUrl = baseUrl
+        self.base_url = base_url
 
     def is_valid(self):
         try:
-            self.wd.current_url
+            self.wd.current_url()
             return True
         except:
             return False
 
-    def is_valid(self):
-        try:
-            self.wd.current_url
-            return True
-        except:  # check any problems
-            return False
-
     def open_homepage(self):
         wd = self.wd
-        wd.get(self.baseUrl)
+        wd.get(self.base_url)
 
     def destroy(self):
         self.wd.quit()

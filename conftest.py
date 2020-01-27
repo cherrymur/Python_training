@@ -52,7 +52,7 @@ def stop(request):
     return fixture
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def check_ui(request):
     return request.config.getoption("--check_ui")
 

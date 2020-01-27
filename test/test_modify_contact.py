@@ -18,7 +18,7 @@ def test_mod_firstname(app, db, check_ui):
     added_contact = Contact(firstname="new_fn")
     added_contact.id = contact.id
     app.contact.modify_by_id(contact.id, added_contact)
-    # added_contact.lastname = old_contacts[index].lastname
+    added_contact.lastname = old_contacts[index].lastname
     new_contacts = db.get_contact_list()
     assert len(old_contacts) == len(new_contacts)
     old_contacts[index] = added_contact

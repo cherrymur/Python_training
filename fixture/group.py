@@ -47,12 +47,24 @@ class GroupHelper:
         self.return_to_groups_page()
         self.group_cache = None
 
+    def delete_by_id(self, id):
+        wd = self.app.wd
+        self.open_groups_page()
+        self.select_by_id(id)
+        wd.find_element_by_name("delete").click()
+        self.return_to_groups_page()
+        self.group_cache = None
+
     def select_first(self):
         self.select_by_index(0)
 
     def select_by_index(self, index):
         wd = self.app.wd
         wd.find_elements_by_name("selected[]")[index].click()
+
+    def select_by_id(self, id):
+         wd = self.app.wd
+         wd.find_element_by_css_selector("input[value='%s']" % id).click()
 
     def count_c(self):
         wd = self.app.wd

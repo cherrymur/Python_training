@@ -1,10 +1,11 @@
 import re
 from random import randrange
+from model.contact import Contact
 
 
 def test_contacts_home_page(app, db):
     list_contacts = app.contact.get_list()
-    assert list_contacts == db.get_contact_list()
+    assert sorted(list_contacts, key=Contact.id_or_max) == sorted(db.get_contact_list(), key=Contact.id_or_max)
 
 '''    
     index = randrange(len(list_contacts)-1)

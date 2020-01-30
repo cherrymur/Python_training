@@ -210,7 +210,7 @@ class ContactHelper:
         Select(wd.find_element_by_name("to_group"))
         wd.find_element_by_xpath("(//option[@value='%s'])[2]" % group_id).click()
         wd.find_element_by_name("add").click()
-        wd.find_element_by_css_selector("//a[contains(@href, './?group=%s')]" % group_id).click()
+        wd.find_element_by_xpath("//a[contains(@href, './?group=%s')]" % group_id).click()
 
 
 ''' another way to  write     select_to_edit_by_index

@@ -6,8 +6,8 @@ import random
 def test_mod_firstname(app, db, check_ui):
     if len(db.get_contact_list()) == 0:
         app.contact.create(Contact(firstname="Avramenko", middlename="Olga", lastname="shdjs", nickname="cherrymur",
-                                   title="dshdj", company="hjhj", address="hjhj", home="hj", mobile="hjh", work="hjh",
-                                   fax="hjhj",
+                                   title="dshdj", company="hjhj", address="hjhj", homephone="hj", mobilephone="hjh", workphone="hjh",
+                                   faxphone="hjhj",
                                    email="ghgh", email2="hgh", email3="hgh", homepage="hghg", bday="31",
                                    bmonth="December", byear="1990",
                                    aday="12", amonth="October", ayear="1236", address2="dsfef", secondaryphone="sas",

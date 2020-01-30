@@ -1,9 +1,13 @@
 import re
 from random import randrange
 from model.contact import Contact
+from fixture.orm import ORMFixture
 
 
-def test_contacts_home_page(app, db):
+db = ORMFixture(host="127.0.0.1", name="addressbook", user="root", password="")
+
+
+def test_contacts_home_page(app):
     list_contacts = app.contact.get_list()
     assert sorted(list_contacts, key=Contact.id_or_max) == sorted(db.get_contact_list(), key=Contact.id_or_max)
 

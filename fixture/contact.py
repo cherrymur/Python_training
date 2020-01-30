@@ -202,6 +202,16 @@ class ContactHelper:
         return Contact(id=id, homephone=homephone, workphone=workphone, mobilephone=mobilephone,
                        secondaryphone=secondaryphone, all_emails_from_view_page=all_emails)
 
+    def add_contact_in_group_by_id(self, id, group_id):
+        wd = self.app.wd
+        self.return_homepage()
+        self.select_by_id(id)
+        wd.find_element_by_name("to_group").click()
+        Select(wd.find_element_by_name("to_group"))
+        wd.find_element_by_xpath("(//option[@value='%s'])[2]" % group_id).click()
+        wd.find_element_by_name("add").click()
+        wd.find_element_by_css_selector("//a[contains(@href, './?group=%s')]" % group_id).click()
+
 
 ''' another way to  write     select_to_edit_by_index
 def open_to_edit_by_index(self, index):

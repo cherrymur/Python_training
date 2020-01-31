@@ -210,8 +210,22 @@ class ContactHelper:
         Select(wd.find_element_by_name("to_group"))
         wd.find_element_by_xpath("(//option[@value='%s'])[2]" % group_id).click()
         wd.find_element_by_name("add").click()
-        wd.find_element_by_xpath("//a[contains(@href, './?group=%s')]" % group_id).click()
+        #wd.find_element_by_xpath("//a[contains(@href, './?group=%s')]" % group_id).click()
 
+    def del_contact_from_group_by_id(self, id, group_id):
+        wd = self.app.wd
+        self.open_group_page(group_id)
+        self.select_by_id(id)
+        wd.find_element_by_name("remove").click()
+        # wd.switch_to_alert().accept()
+        wd.find_element_by_css_selector("div.msgbox")  # fix test_del_contact fail result
+        self.return_homepage()
+        self.contact_cache = None
+
+    def open_group_page(self, group_id):
+        wd = self.app.wd  # link for the browser driver
+        if not (wd.current_url.endswith("addressbook/?group=%s" % group_id)):
+            wd.get("http://localhost/addressbook/?group=%s" % group_id)
 
 ''' another way to  write     select_to_edit_by_index
 def open_to_edit_by_index(self, index):

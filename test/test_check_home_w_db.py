@@ -1,5 +1,4 @@
 import re
-from random import randrange
 from model.contact import Contact
 
 
@@ -17,8 +16,8 @@ def test_contacts_on_homepage_w_db(app, db):
     assert list_contacts_from_homepage == list_contacts_from_db
     for i in range(len(list_contacts_from_homepage)):
         contact = list_contacts_from_db[i]
-        assert list_contacts_from_homepage[i].all_phones_from_home_page == merge_phones_like_on_home_page(contact)
-        assert list_contacts_from_homepage[i].all_emails_from_home_page == merge_emails_like_on_home_page(contact)
+        assert clear(list_contacts_from_homepage[i].all_phones_from_home_page) == merge_phones_like_on_home_page(contact)
+        assert clear(list_contacts_from_homepage[i].all_emails_from_home_page) == merge_emails_like_on_home_page(contact)
         assert list_contacts_from_homepage[i].firstname == contact.firstname
         assert list_contacts_from_homepage[i].lastname == contact.lastname
         assert list_contacts_from_homepage[i].address == contact.address

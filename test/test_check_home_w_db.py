@@ -2,7 +2,7 @@ import re
 from model.contact import Contact
 
 
-def test_contacts_on_home_page_w_db(app, db):
+def test_contacts_on_homepage_w_db(app, db):
     if len(app.contact.get_list()) == 0:
         app.contact.create(Contact(firstname="Avramenko", middlename="Olga", lastname="shdjs", nickname="cherrymur",
                                    title="dshdj", company="hjhj", address="hjhj", homephone="hj", mobilephone="hjh", workphone="hjh",
@@ -22,6 +22,7 @@ def test_contacts_on_home_page_w_db(app, db):
         assert list_contacts_from_homepage[i].lastname == contact.lastname
         assert list_contacts_from_homepage[i].address == contact.address
 
+
 def merge_emails_like_on_home_page(contact):
     return "\n".join(filter(lambda x: x != "",
                             map(lambda x: clear(x),
@@ -30,7 +31,7 @@ def merge_emails_like_on_home_page(contact):
 
 
 def clear(s):
-    return re.sub("[() -]", "", s)
+    return re.sub("[() -]", '', s)
 
 
 def merge_phones_like_on_home_page(contact):

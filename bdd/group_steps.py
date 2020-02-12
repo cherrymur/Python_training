@@ -14,7 +14,7 @@ def new_group(name, header, footer):
 
 
 @when("I add the group into the list")
-def add_new_group(app, new_group): # from Examples in groups.feature
+def add_new_group(app, new_group):  # from Examples in groups.feature
     app.group.create(new_group)
 
 

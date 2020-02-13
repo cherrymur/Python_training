@@ -39,7 +39,7 @@ def random_contact(non_empty_contact_list):
 
 
 @when("I delete the contact from the list")
-def delete_random_contact(app, random_contact): # from Examples in contacts.feature
+def delete_random_contact(app, random_contact):  # from Examples in contacts.feature
     app.contact.delete_by_id(random_contact.id)
 
 
@@ -51,3 +51,4 @@ def verify_contact_added(db, non_empty_contact_list, random_contact, app, check_
     old_contacts.remove(random_contact)
     if check_ui:
         assert sorted(old_contacts, key=Contact.id_or_max) == sorted(app.contact.get_list(), key=Contact.id_or_max)
+

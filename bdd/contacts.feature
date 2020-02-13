@@ -15,3 +15,4 @@ Scenario: Delete a contact
   Given a random contact from the list
   When I delete the contact from the list
   Then the new contact list is equal to the old list without the deleted contact
+

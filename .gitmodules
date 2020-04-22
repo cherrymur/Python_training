@@ -1,0 +1,3 @@
+[submodule "Python_training_mantis"]
+	path = Python_training_mantis
+	url = https://github.com/cherrymur/Python_training_mantis.git

@@ -11,7 +11,8 @@ from fixture.db import DbFixture
 fixture = None
 target = None
 
-
+#definition of load config_file
+# is used when we needed to load target.json
 def load_config(file):
     global target
     if target is None:
@@ -20,7 +21,7 @@ def load_config(file):
             target = json.load(f)
     return target
 
-# intialization fixture before each test
+# intialization fixture before each test (is link on application.py)
 @pytest.fixture
 def app(request):
     global fixture
